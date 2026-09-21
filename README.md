@@ -9,4 +9,4 @@
 |2|lab2|XX.XX.XX|В процессе|
 |N|labN|XX.XX.XX|В процессе|
 
-[pictures/tu8imwlo968h1.jpeg]
+!(pictures/tu8imwlo968h1.jpeg)
