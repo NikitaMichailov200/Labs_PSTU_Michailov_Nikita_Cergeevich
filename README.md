@@ -8,3 +8,5 @@
 |1|lab1|21.09.26|Завершено|
 |2|lab2|XX.XX.XX|В процессе|
 |N|labN|XX.XX.XX|В процессе|
+
+pictures/tu8imwlo968h1.jpeg
