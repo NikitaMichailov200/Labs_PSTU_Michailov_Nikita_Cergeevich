@@ -1,24 +1,34 @@
 #include <iostream>
+#include <iomanip>
 #include <cmath>
+#include <windows.h>
+
 using namespace std;
 
 int main() {
-float a = 1000.0f;
-float b = 0.0001f;
+    SetConsoleCP(CP_UTF8);
+    SetConsoleOutputCP(CP_UTF8);
+    double epsilon = 0.0001; // заданная точность
+    int n = 1;                     // номер текущего члена ряда
+    int count = 0;                 // количество учтенных членов
+    double term = 1.0 / 3.0;       // первый член: a1 = 1! / (3 * 1^1)
+    double sum = 0.0;              // сумма ряда
 
-float num_f = pow(a + b, 3) - (pow(a, 3) + 3 * pow(a, 2) * b); // Числитель для float
-float den_f = 3 * a * pow(b, 2) + pow(b, 3); // Знаменатель для float
-float result_f = num_f / den_f; // результат для float
+    // Суммируем, пока очередной член не меньше epsilon.
+    while (term >= epsilon) {
+        sum += term;               // добавляем член к сумме
+        ++count;                   // учитываем добавленный член
 
-double a_d = 1000.0;
-double b_d = 0.0001;
+        // a_(n+1) = a_n * (n / (n + 1))^n
+        term *= pow(static_cast<double>(n) / (n + 1), n);
+        ++n;                       // номер следующего члена
+    }
 
-double num_d = pow(a_d + b_d, 3) - (pow(a_d, 3) + 3 * pow(a_d, 2) * b_d); // Числитель для double
-double den_d = 3 * a_d * pow(b_d, 2) + pow(b_d, 3); // Знаменатель для double
-double result_d = num_d / den_d; // Результтат для double
+    cout << "Сумма ряда: " << sum << '\n';
+    cout << "Учтено членов: " << count << '\n';
+    cout << "Первый член меньше epsilon (a " << n << "): "
+         << term << '\n';
+    cout << "Заданная точность epsilon: " << epsilon << '\n';
 
-cout << "float: " << result_f << endl; // вывод результата с Float
-cout << "double: " << result_d << endl; // вывод результата с Double
-
-return 0;
+    return 0;
 }
